@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import BloodPressure
 
-# Register your models here.
+class BloodPressureTimestamp(admin.ModelAdmin):
+    readonly_fields = ("timestamp",)
+
+admin.site.register(BloodPressure, BloodPressureTimestamp)
