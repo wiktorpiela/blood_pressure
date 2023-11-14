@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Ciśnienie krwi{% endblock title %}
-
 
 {% block content %}
 
+<div class="main">
+
+    <a href="#">
+        <img src="{% static 'img/add.png' %}" alt="add">
+        <p>Dodaj</p>
+    </a>
     
     {% if len == 0 %}
     <h1>brak danych</h1>
 
     {% else %}
     <div class="collected-data">
-        
+
     </div>
     {% endif %}
-        
 
+</div>
 
 {% endblock content %}
     
