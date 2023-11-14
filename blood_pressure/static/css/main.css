@@ -15,6 +15,61 @@ html, body {
     margin: 0 auto;
 }
 
+
+
+
 .main{
     text-align: center;
+}
+
+
+
+
+
+
+.stats{
+    display: flex;
+    justify-content: space-between;
+    width: 55rem;
+    margin: 2rem auto;
+    font-size: 1.5rem;
+}
+
+.stats-component{
+    padding: 1rem;
+    background-color: #4658d4;
+    border-radius: 1rem;
+    color: white;
+}
+
+
+
+
+
+a img{
+    width: 10rem;
+}
+
+a p{
+    font-size: 1.75rem;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+
+.collected-data{
+    font-size: 2rem;
+    margin: 1rem auto;
+    border-color: #4658d4;
+    border-style: solid;
+    border-radius: 1.5rem;
+    width: 35rem;
+    padding: 1rem;
+    text-align: left;
 }

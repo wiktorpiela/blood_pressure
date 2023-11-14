@@ -6,6 +6,25 @@
 
 <div class="main">
 
+    <div class="stats">
+        <div class="stats-component">
+            <p>POMIARÓW</p>
+            <p>{{data.count}}</p>
+        </div>
+        <div class="stats-component">
+            <p>ŚREDNIE GÓRNE</p>
+            <p>{{avg_sys}}</p>
+        </div>
+        <div class="stats-component">
+            <p>ŚREDNIE DOLNE</p>
+            <p>{{avg_dia}}</p>
+        </div>
+        <div class="stats-component">
+            <p>ŚREDNI PULS</p>
+            <p>{{avg_hr}}</p>
+        </div>
+    </div>
+
     <a href="#">
         <img src="{% static 'img/add.png' %}" alt="add">
         <p>Dodaj</p>
@@ -13,11 +32,16 @@
     
     {% if len == 0 %}
     <h1>brak danych</h1>
-
     {% else %}
-    <div class="collected-data">
-
-    </div>
+    
+        {% for item in data %}
+        <div class="collected-data">
+            <p>{{item.timestamp|date:"d.m.Y h:i"}}</p>
+            <p>{{item.systolic}}/{{item.diastolic}} mmHg puls {{item.hearth_rate}}</p>
+        </div>
+        {% endfor %}
+            
+    
     {% endif %}
 
 </div>
