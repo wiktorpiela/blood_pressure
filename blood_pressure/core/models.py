@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class BloodPressure(models.Model):
+    systolic = models.IntegerField()
+    diastolic = models.IntegerField()
+    hearth_rate = models.IntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.timestamp
