@@ -22,15 +22,14 @@ html, body {
     padding: 1rem;
     border-radius: 1.5rem;
     border: none;
+    width: 8rem;
 }
-
 
 
 
 .main{
     text-align: center;
 }
-
 
 
 
@@ -43,7 +42,6 @@ html, body {
 .date-range{
     font-size: 2rem;
 }
-
 
 .date-form,
 .stats{
@@ -95,4 +93,27 @@ a{
     width: 35rem;
     padding: 1rem;
     text-align: left;
+}
+
+/* popup styling */
+.popup{
+    width: 40rem;
+    background: #fff;
+    border-radius: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    padding: 2rem;
+    color: #333;
+    border: #4658d4;
+    border-style: solid;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
 }
