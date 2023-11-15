@@ -1,25 +1,41 @@
-from typing import Any
 from django.shortcuts import render
-from django.views.generic import TemplateView, View
+from django.views.generic import View
 from .models import BloodPressure
 from .forms import BloodPressureForm
 from django.db.models import Avg, Q
 from datetime import datetime
 from django.utils.timezone import make_aware
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 
-class Index(TemplateView):
-    form = BloodPressureForm()
-    blood = BloodPressure
-    data = blood.objects.all()
-    avg_systolic = blood.objects.aggregate(Avg("systolic"))["systolic__avg"]
-    avg_diastolic = blood.objects.aggregate(Avg("diastolic"))["diastolic__avg"]
-    avg_hearth_rate = blood.objects.aggregate(Avg("hearth_rate"))["hearth_rate__avg"]
-    template_name = "index.html"
+class Index(View):
 
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super(Index, self).get_context_data(**kwargs)
-        context.update({"form": self.form,"data": self.data, "avg_sys":self.avg_systolic, "avg_dia":self.avg_diastolic, "avg_hr":self.avg_hearth_rate})
-        return context
+    def get(self, request):
+        form = BloodPressureForm()
+        data = BloodPressure.objects.order_by("-timestamp")
+        avg_systolic = data.aggregate(Avg("systolic"))["systolic__avg"]
+        avg_diastolic = data.aggregate(Avg("diastolic"))["diastolic__avg"]
+        avg_hearth_rate = data.aggregate(Avg("hearth_rate"))["hearth_rate__avg"]
+
+        context = {"form": form,
+                   "data": data, 
+                   "avg_sys":avg_systolic, 
+                   "avg_dia":avg_diastolic, 
+                   "avg_hr":avg_hearth_rate}
+
+        return render(request, "index.html", context)
+    
+    def post(self, request):
+        form = BloodPressureForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(request.path)
+        else:
+            messages.info(request, "Coś poszło nie tak, spróbuj ponownie!") 
+            return HttpResponseRedirect(request.path)
+
+        
     
 class FilteredIndex(View):
     def post(self, request):

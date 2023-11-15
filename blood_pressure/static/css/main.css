@@ -140,3 +140,14 @@ a{
     font-family: 'Roboto Mono';
 }
 
+/* add new item form  message*/
+.message{
+    background: #f2dedf;
+    color: #815f56;
+    font-size: 2rem;
+    margin: 1.5rem auto;
+    width: 55rem;
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+

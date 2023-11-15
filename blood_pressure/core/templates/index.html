@@ -13,21 +13,31 @@
         </div>
         <div class="stats-component">
             <p>ŚREDNIE GÓRNE</p>
-            <p>{{avg_sys}}</p>
+            <p>{{avg_sys|floatformat:"1"}}</p>
         </div>
         <div class="stats-component">
             <p>ŚREDNIE DOLNE</p>
-            <p>{{avg_dia}}</p>
+            <p>{{avg_dia|floatformat:"1"}}</p>
         </div>
         <div class="stats-component">
             <p>ŚREDNI PULS</p>
-            <p>{{avg_hr}}</p>
+            <p>{{avg_hr|floatformat:"1"}}</p>
         </div>
     </div>
 
     <a href="#" class="addBtn">
         <img src="{% static 'img/add.png' %}" alt="add">
     </a>
+
+    {% if messages %}
+    <div class="message">
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
     
     {% if len == 0 %}
     <h1>brak danych</h1>
@@ -40,7 +50,6 @@
         </div>
         {% endfor %}
             
-    
     {% endif %}
 
     <div class="popup" id="popup">
@@ -54,7 +63,6 @@
                 <button type="submit" class="saveBtn btn">Zapisz</button>
                 <button type="button" class="cancelBtn btn">Anuluj</button>
             </div>
-
         </form>
     </div>
 
