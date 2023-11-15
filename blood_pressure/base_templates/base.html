@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>{% block title %}{% endblock title %}</title>
 </head>
+
+<nav>
+    <form action="{% url 'core:filteredIndex' %}" method="post" class="date-form">
+        {% csrf_token %}
+        <div class="stats-component date-form-component">
+            <label for="start">Początek</label>
+            <input type="date" name="start_date" id="start" required>
+        </div>
+        <div class="stats-component date-form-component">
+            <label for="end">Koniec</label>
+            <input type="date" name="end_date" id="end" required>
+        </div>
+        <button type="submit" class="btn">Filtruj</button>
+    </form>
+</nav>
+
 <body>
     <div class="row">
         {% block content %}
