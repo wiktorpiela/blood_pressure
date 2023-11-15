@@ -6,6 +6,19 @@
 
 <div class="main">
 
+    <form method="POST" class="date-form">
+        {% csrf_token %}
+        <div class="stats-component date-form-component">
+            <label for="start">Początek</label>
+            <input type="date" name="start_date" id="start" required>
+        </div>
+        <div class="stats-component date-form-component">
+            <label for="end">Koniec</label>
+            <input type="date" name="end_date" id="end" required>
+        </div>
+        <button type="submit">Filtruj</button>
+    </form>
+
     <div class="stats">
         <div class="stats-component">
             <p>POMIARÓW</p>
@@ -27,7 +40,6 @@
 
     <a href="#">
         <img src="{% static 'img/add.png' %}" alt="add">
-        <p>Dodaj</p>
     </a>
     
     {% if len == 0 %}

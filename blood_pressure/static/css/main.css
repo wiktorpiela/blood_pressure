@@ -24,9 +24,12 @@ html, body {
 
 
 
+.date-form-component{
+    flex-direction: column;
+}
 
 
-
+.date-form,
 .stats{
     display: flex;
     justify-content: space-between;
