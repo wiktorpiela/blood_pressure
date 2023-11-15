@@ -2,11 +2,13 @@ from typing import Any
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from .models import BloodPressure
+from .forms import BloodPressureForm
 from django.db.models import Avg, Q
 from datetime import datetime
 from django.utils.timezone import make_aware
 
 class Index(TemplateView):
+    form = BloodPressureForm()
     blood = BloodPressure
     data = blood.objects.all()
     avg_systolic = blood.objects.aggregate(Avg("systolic"))["systolic__avg"]
@@ -16,7 +18,7 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(Index, self).get_context_data(**kwargs)
-        context.update({"data": self.data, "avg_sys":self.avg_systolic, "avg_dia":self.avg_diastolic, "avg_hr":self.avg_hearth_rate})
+        context.update({"form": self.form,"data": self.data, "avg_sys":self.avg_systolic, "avg_dia":self.avg_diastolic, "avg_hr":self.avg_hearth_rate})
         return context
     
 class FilteredIndex(View):

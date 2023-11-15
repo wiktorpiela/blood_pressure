@@ -117,3 +117,26 @@ a{
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
 }
+
+.newItemForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem
+}
+
+.newItemForm div{
+    margin-top: 2rem;
+}
+
+.newItemForm button{
+    width: 15rem;
+    height: 5rem;
+}
+
+.newItemForm > *{
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Roboto Mono';
+}
+
