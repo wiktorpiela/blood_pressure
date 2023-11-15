@@ -16,19 +16,23 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(Index, self).get_context_data(**kwargs)
-        context.update({"data": self.data, "len":len(self.data), "avg_sys":self.avg_systolic, "avg_dia":self.avg_diastolic, "avg_hr":self.avg_hearth_rate})
+        context.update({"data": self.data, "avg_sys":self.avg_systolic, "avg_dia":self.avg_diastolic, "avg_hr":self.avg_hearth_rate})
         return context
     
-
-
 class FilteredIndex(View):
     def post(self, request):
         start_date, end_date = datetime.strptime(request.POST.get("start_date"), '%Y-%m-%d').date(), datetime.strptime(request.POST.get("end_date"), '%Y-%m-%d').date()
         start_date, end_date = datetime.combine(start_date, datetime.min.time()), datetime.combine(end_date, datetime.max.time())
         
         data = BloodPressure.objects.filter(Q(timestamp__range=[make_aware(start_date), make_aware(end_date)]))
+        if len(data) == 0:
+            avg_systolic, avg_diastolic, avg_hearth_rate = "---"
+        else:
+            avg_systolic = data.aggregate(Avg("systolic"))["systolic__avg"]
+            avg_diastolic = data.aggregate(Avg("diastolic"))["diastolic__avg"]
+            avg_hearth_rate = data.aggregate(Avg("hearth_rate"))["hearth_rate__avg"]
 
-        return render(request, "filtered_index.html", {"data":data})
+        return render(request, "filtered_index.html", {"start_date":start_date,"end_date":end_date,"data":data, "avg_sys":avg_systolic, "avg_dia":avg_diastolic, "avg_hr":avg_hearth_rate})
 
 
 

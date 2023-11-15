@@ -37,6 +37,11 @@ html, body {
 .date-form-component{
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+.date-range{
+    font-size: 2rem;
 }
 
 
