@@ -34,8 +34,6 @@ class Index(View):
         else:
             messages.info(request, "Coś poszło nie tak, spróbuj ponownie!") 
             return HttpResponseRedirect(request.path)
-
-        
     
 class FilteredIndex(View):
     def post(self, request):
