@@ -51,7 +51,6 @@ class FilteredIndex(View):
 
         return render(request, "filtered_index.html", {"start_date":start_date,"end_date":end_date,"data":data, "avg_sys":avg_systolic, "avg_dia":avg_diastolic, "avg_hr":avg_hearth_rate})
 
-
 class DeleteItem(DeleteView):
     model = BloodPressure
     success_url = "/"
