@@ -3,7 +3,8 @@
     {% load static %}
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400&display=swap" rel="stylesheet">
@@ -16,13 +17,13 @@
         {% csrf_token %}
         <div class="stats-component date-form-component">
             <label for="start">Początek</label>
-            <input type="date" name="start_date" id="start" required>
+            <input type="date" name="start_date" id="start" required class="start_date">
         </div>
         <div class="stats-component date-form-component">
             <label for="end">Koniec</label>
-            <input type="date" name="end_date" id="end" required>
+            <input type="date" name="end_date" id="end" required class="end_date">
         </div>
-        <button type="submit" class="btn">Filtruj</button>
+        <button type="submit" class="filterBtn btn">Filtruj</button>
         <button onclick="location.href = '/'" class="btn">Reset</button>
     </form>
 </nav>
@@ -34,4 +35,6 @@
         {% endblock content %}   
     </div>
 </body>
+
+<script src="{% static 'js/base.js' %}"></script>
 </html>

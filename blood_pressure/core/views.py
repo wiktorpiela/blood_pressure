@@ -29,7 +29,6 @@ class Index(View):
     
     def post(self, request):
         form = BloodPressureForm(request.POST)
-        
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(request.path)
@@ -42,7 +41,7 @@ class FilteredIndex(View):
         start_date, end_date = datetime.strptime(request.POST.get("start_date"), '%Y-%m-%d').date(), datetime.strptime(request.POST.get("end_date"), '%Y-%m-%d').date()
         start_date, end_date = datetime.combine(start_date, datetime.min.time()), datetime.combine(end_date, datetime.max.time())
         
-        data = BloodPressure.objects.filter(Q(timestamp__range=[make_aware(start_date), make_aware(end_date)]))
+        data = BloodPressure.objects.filter(Q(timestamp__range=[make_aware(start_date), make_aware(end_date)])).order_by("-timestamp")
         if len(data) == 0:
             avg_systolic, avg_diastolic, avg_hearth_rate = "---"
         else:
@@ -56,8 +55,13 @@ class DeleteItem(DeleteView):
     model = BloodPressure
 
     def get_success_url(self):
-        return reverse("core:index")
-    
+        referer = self.request.META.get('HTTP_REFERER')
+        if "filter" in referer:
+            # return reverse("core:filteredIndex")
+            return reverse("core:index")
+        else:
+            return reverse("core:index")
+            
 class EditItem(UpdateView):
     model = BloodPressure
     form_class = BloodPressureForm
@@ -67,4 +71,8 @@ class EditItem(UpdateView):
         return obj
 
     def get_success_url(self):
-        return reverse("core:index")
+        path = self.request.path
+        if "filter" in path:
+            return reverse("core:filteredIndex")
+        else:
+            return reverse("core:index")
