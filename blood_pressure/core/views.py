@@ -53,5 +53,5 @@ class FilteredIndex(View):
 
 class DeleteItem(DeleteView):
     model = BloodPressure
-    success_url = "/"
+    success_url = "index.html"
     template_name = "index.html"

@@ -11,3 +11,18 @@ cancelBtn.addEventListener("click", ()=>{
     popup.classList.remove("open-popup")
 })
 
+// DELETE ITEM POPUP
+const delPopups = document.querySelectorAll(".popup-delete")
+const delBtns = document.querySelectorAll(".deleteItemBtns")
+
+let i=0;
+delBtns.forEach((delBtn) =>{
+
+    let delPopup = delPopups[i];
+    delBtn.addEventListener("click", ()=>{
+        delPopup.classList.add("open-popup")
+    })
+
+    i++;
+})
+
