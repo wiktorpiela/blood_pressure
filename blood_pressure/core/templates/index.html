@@ -56,9 +56,9 @@
         <h1>Nowy wpis</h1>
         <form action="{% url 'core:index' %}" method="post" class="newItemForm">
             {% csrf_token %}
-            <input type="number" name="systolic" placeholder="Ciśnienie górne">
-            <input type="number" name="diastolic" placeholder="Ciśnienie dolne">
-            <input type="number" name="hearth_rate" placeholder="Puls">
+            <input type="number" name="systolic" placeholder="Ciśnienie górne" required min="30" max="300">
+            <input type="number" name="diastolic" placeholder="Ciśnienie dolne" required min="30" max="300">
+            <input type="number" name="hearth_rate" placeholder="Puls" required min="10" max="200">
             <div>
                 <button type="submit" class="saveBtn btn">Zapisz</button>
                 <button type="button" class="cancelBtn btn">Anuluj</button>
