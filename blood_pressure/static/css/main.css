@@ -111,7 +111,8 @@ a{
 
 /* popup styling */
 .popup,
-.popup-delete{
+.popup-delete,
+.popup-edit{
     width: 40rem;
     background: #fff;
     border-radius: 1.5rem;

@@ -62,7 +62,6 @@ class EditItem(UpdateView):
     model = BloodPressure
     form_class = BloodPressureForm
 
-
     def get_object(self, *args, **kwargs):
         obj = get_object_or_404(BloodPressure, pk=self.kwargs['pk'])
         return obj

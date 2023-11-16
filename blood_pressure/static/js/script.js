@@ -33,3 +33,25 @@ delBtns.forEach((delBtn) =>{
     i++;
 })
 
+// edit ITEM POPUP
+const editPopups = document.querySelectorAll(".popup-edit")
+const editBtns = document.querySelectorAll(".editItemBtns")
+const cancelEditBtns = document.querySelectorAll(".cancelEditBtns")
+
+let j=0;
+editBtns.forEach((editBtn) =>{
+
+    let editPopup = editPopups[j];
+    let cancelEditBtn = cancelEditBtns[j];
+
+    editBtn.addEventListener("click", ()=>{
+        editPopup.classList.add("open-popup")
+    })
+
+    cancelEditBtn.addEventListener("click", ()=>{
+        editPopup.classList.remove("open-popup")
+    })
+
+    j++;
+})
+
