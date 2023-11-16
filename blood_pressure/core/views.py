@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
+from django.views.generic.edit import DeleteView
 from .models import BloodPressure
 from .forms import BloodPressureForm
 from django.db.models import Avg, Q
@@ -51,4 +52,7 @@ class FilteredIndex(View):
         return render(request, "filtered_index.html", {"start_date":start_date,"end_date":end_date,"data":data, "avg_sys":avg_systolic, "avg_dia":avg_diastolic, "avg_hr":avg_hearth_rate})
 
 
-
+class DeleteItem(DeleteView):
+    model = BloodPressure
+    success_url = "/"
+    template_name = "index.html"

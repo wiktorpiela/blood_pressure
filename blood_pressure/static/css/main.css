@@ -92,9 +92,21 @@ a{
     border-color: #4658d4;
     border-style: solid;
     border-radius: 1.5rem;
-    width: 35rem;
+    width: 40rem;
     padding: 1rem;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.data-options{
+    display: flex;
+    justify-content: space-between;
+}
+
+.data-options img{
+    width: 5rem;
 }
 
 /* popup styling */
