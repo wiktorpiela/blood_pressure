@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django.views.generic import View
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 from .models import BloodPressure
 from .forms import BloodPressureForm
 from django.db.models import Avg, Q
@@ -53,5 +54,18 @@ class FilteredIndex(View):
 
 class DeleteItem(DeleteView):
     model = BloodPressure
-    success_url = "index.html"
-    template_name = "index.html"
+
+    def get_success_url(self):
+        return reverse("core:index")
+    
+class EditItem(UpdateView):
+    model = BloodPressure
+    form_class = BloodPressureForm
+
+
+    def get_object(self, *args, **kwargs):
+        obj = get_object_or_404(BloodPressure, pk=self.kwargs['pk'])
+        return obj
+
+    def get_success_url(self):
+        return reverse("core:index")
