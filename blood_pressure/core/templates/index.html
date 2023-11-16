@@ -60,11 +60,14 @@
 
         <div class="popup-delete popup-delete-item{{item.id}}">
             <h1>Czy jesteś pewny, że chcesz usunąć ten wpis? {{item.systolic}}</h1>
-            <!-- <form action="{% url 'core:deleteItem' item.id %}" method="post" class="newItemForm">
+            <form action="{% url 'core:deleteItem' item.id %}" method="post" class="newItemForm">
                 {% csrf_token %}
-                <button type="submit" class="saveBtn btn">Usuń</button>
-                <button type="button" class="cancelBtn btn">Anuluj</button>
-            </form> -->
+                <div>
+                    <button type="submit" class="confirmDelBtns btn">Usuń</button>
+                    <button type="button" class="goBackBtns btn">Anuluj</button>
+                </div>
+
+            </form>
         </div>
 
         {% endfor %}
