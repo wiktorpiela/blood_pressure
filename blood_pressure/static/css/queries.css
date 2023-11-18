@@ -9,3 +9,12 @@
     }
 
 }
+
+@media only screen and (max-width: 400px) {
+
+    html, body {
+        font-size: 7px;
+    }
+
+
+}
