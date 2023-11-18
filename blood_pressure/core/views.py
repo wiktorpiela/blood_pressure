@@ -9,18 +9,25 @@ from datetime import datetime
 from django.utils.timezone import make_aware
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 class Index(View):
 
     def get(self, request):
         form = BloodPressureForm()
         data = BloodPressure.objects.order_by("-timestamp")
+
+        #pagination
+        paginator = Paginator(data, 9)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
         avg_systolic = data.aggregate(Avg("systolic"))["systolic__avg"]
         avg_diastolic = data.aggregate(Avg("diastolic"))["diastolic__avg"]
         avg_hearth_rate = data.aggregate(Avg("hearth_rate"))["hearth_rate__avg"]
 
         context = {"form": form,
-                   "data": data, 
+                   "data": page_obj, 
                    "avg_sys":avg_systolic, 
                    "avg_dia":avg_diastolic, 
                    "avg_hr":avg_hearth_rate}
