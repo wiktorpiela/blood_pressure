@@ -37,6 +37,7 @@ class Index(View):
             return HttpResponseRedirect(request.path)
     
 class FilteredIndex(View):
+
     def post(self, request):
         start_date, end_date = datetime.strptime(request.POST.get("start_date"), '%Y-%m-%d').date(), datetime.strptime(request.POST.get("end_date"), '%Y-%m-%d').date()
         start_date, end_date = datetime.combine(start_date, datetime.min.time()), datetime.combine(end_date, datetime.max.time())
@@ -57,7 +58,7 @@ class DeleteItem(DeleteView):
     def get_success_url(self):
         referer = self.request.META.get('HTTP_REFERER')
         if "filter" in referer:
-            # return reverse("core:filteredIndex")
+            #return reverse("core:filteredIndex")
             return reverse("core:index")
         else:
             return reverse("core:index")

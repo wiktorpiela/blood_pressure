@@ -1,0 +1,11 @@
+@media only screen and (max-width: 430px) {
+
+    html, body {
+        font-size: 7.5px;
+    }
+
+    .btn{
+        font-size: 1.5rem;
+    }
+
+}
