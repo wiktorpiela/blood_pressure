@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Roboto Mono';
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.btn{
+    background-color: #4658d4;
+    color: white;
+    font-family: 'Roboto Mono';
+    padding: 1rem;
+    border-radius: 1.5rem;
+    border: none;
+    width: 8rem;
+}
+
+
+.main{
+    text-align: center;
+}
+
+
+
+.date-form-component{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.date-range{
+    font-size: 2rem;
+}
+
+.date-form,
+.stats{
+    display: flex;
+    justify-content: space-between;
+    width: 55rem;
+    margin: 2rem auto;
+    font-size: 1.5rem;
+}
+
+.date-form{
+    justify-content: space-around;
+}
+
+.stats-component{
+    padding: 1rem;
+    background-color: #4658d4;
+    border-radius: 1rem;
+    color: white;
+}
+
+
+
+
+
+a img{
+    width: 10rem;
+}
+
+a p{
+    font-size: 1.75rem;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+
+.collected-data{
+    font-size: 2rem;
+    margin: 1rem auto;
+    border-color: #4658d4;
+    border-style: solid;
+    border-radius: 1.5rem;
+    width: 40rem;
+    padding: 1rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.data-options{
+    display: flex;
+    justify-content: space-between;
+}
+
+.data-options img{
+    width: 5rem;
+}
+
+/* popup styling */
+.popup,
+.popup-delete,
+.popup-edit{
+    width: 40rem;
+    background: #fff;
+    border-radius: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    padding: 2rem;
+    color: #333;
+    border: #4658d4;
+    border-style: solid;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.newItemForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem
+}
+
+.newItemForm div{
+    margin-top: 2rem;
+}
+
+.newItemForm button{
+    width: 15rem;
+    height: 5rem;
+}
+
+.newItemForm > *{
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Roboto Mono';
+}
+
+/* add new item form  message*/
+.message{
+    background: #f2dedf;
+    color: #815f56;
+    font-size: 2rem;
+    margin: 1.5rem auto;
+    width: 55rem;
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+
+/* pagination */
+.pagination{
+    font-size: 2rem;
+    margin: 1.5rem auto;
+}
+
+/* chart */
+.chart-cont{
+    width: 10rem;
+    margin: 0 auto;
+}
+
+.chart{
+    width: 100%;
+}
+

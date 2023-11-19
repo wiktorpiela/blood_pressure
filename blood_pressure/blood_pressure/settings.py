@@ -1,19 +1,22 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a!2o9+_)60nxz2a&09fs4lnv_c%o*vb7(!zgo71e8!^5-&)e!4'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://', "http://127.0.0.1:8000/"]
 
 
 # Application definition
@@ -36,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'blood_pressure.urls'
@@ -62,12 +66,24 @@ WSGI_APPLICATION = 'blood_pressure.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG == False:#use postgresql in production
+		DATABASES = {
+		    'default': {
+		        'ENGINE': 'django.db.backends.postgresql',
+		        'NAME': os.environ["PGDATABASE"],
+		        'USER': os.environ["PGUSER"],
+		        'PASSWORD': os.environ["PGPASSWORD"],
+		        'HOST': os.environ["PGHOST"],
+		        'PORT': os.environ["PGPORT"],
+		    }
+		}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 
 # Password validation
@@ -111,6 +127,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / "static", 
     ]
+
+DISABLE_COLLECTSTATIC = 0
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

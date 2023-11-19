@@ -1,0 +1,28 @@
+@media only screen and (max-width: 430px) {
+
+    html, body {
+        font-size: 7.5px;
+    }
+
+    .btn{
+        font-size: 1.5rem;
+    }
+
+    .chart-cont{
+        width: 55rem;
+    }
+
+    .chart{
+        margin: 0 auto;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    html, body {
+        font-size: 7px;
+    }
+
+
+}
