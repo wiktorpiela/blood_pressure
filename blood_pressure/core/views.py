@@ -27,7 +27,8 @@ class Index(View):
         avg_hearth_rate = data.aggregate(Avg("hearth_rate"))["hearth_rate__avg"]
 
         context = {"form": form,
-                   "data": page_obj, 
+                   "data": page_obj,
+                   "data_len": len(data),
                    "avg_sys":avg_systolic, 
                    "avg_dia":avg_diastolic, 
                    "avg_hr":avg_hearth_rate}
