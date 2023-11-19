@@ -10,6 +10,7 @@ from django.utils.timezone import make_aware
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.core.paginator import Paginator
+from .utils import get_plot
 
 class Index(View):
 
@@ -17,6 +18,11 @@ class Index(View):
         form = BloodPressureForm()
         data = BloodPressure.objects.order_by("-timestamp")
         data_len = len(data)
+
+        #plotting
+        x = [x.timestamp for x in data]
+        y = [y.systolic for y in data]
+        chart = get_plot(x, y)
 
         #pagination
         paginator = Paginator(data, 9)
@@ -32,7 +38,8 @@ class Index(View):
                    "data_len": data_len,
                    "avg_sys":avg_systolic, 
                    "avg_dia":avg_diastolic, 
-                   "avg_hr":avg_hearth_rate}
+                   "avg_hr":avg_hearth_rate,
+                   "chart":chart}
 
         return render(request, "index.html", context)
     

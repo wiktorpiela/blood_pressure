@@ -8,6 +8,10 @@
         font-size: 1.5rem;
     }
 
+    .chart-cont{
+        width: 55rem;
+    }
+
 }
 
 @media only screen and (max-width: 400px) {
