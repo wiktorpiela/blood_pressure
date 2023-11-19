@@ -10,7 +10,6 @@
     <div class="chart-cont">
         <img src="data:image/png;base64, {{chart|safe}}" alt="chart" class="chart">
     </div>
-        
     {% endif %}
 
     <div class="stats">
@@ -94,7 +93,7 @@
         {% endfor %}
 
         
-        {% if data_len > 9 %}
+        {% if data_len > 6 %}
             <div class="pagination">
                 {% if data.has_previous %}
                     <a href="?page=1">&laquo; Pierwsza</a>

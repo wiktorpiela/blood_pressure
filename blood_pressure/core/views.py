@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.core.paginator import Paginator
 from .utils import get_plot
+import pandas as pd
 
 class Index(View):
 
@@ -21,14 +22,17 @@ class Index(View):
 
         #conditional plotting
         if data_len >= 7:
-            x = [x.timestamp for x in data]
-            y = [y.systolic for y in data]
-            chart = get_plot(x, y)
+            df = pd.DataFrame.from_records(data.values("timestamp", "systolic", "diastolic", "hearth_rate"))
+            df = df.melt(id_vars="timestamp", value_vars=["systolic", "diastolic", "hearth_rate"])
+            print(df)
+            # x = [x.timestamp for x in data]
+            # y = [y.systolic for y in data]
+            chart = get_plot(df["timestamp"], df["value"], df["variable"])
         else:
             chart = False
 
         #pagination
-        paginator = Paginator(data, 9)
+        paginator = Paginator(data, 6)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
 

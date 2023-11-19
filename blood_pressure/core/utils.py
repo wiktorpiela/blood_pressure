@@ -13,11 +13,10 @@ def get_graph():
     buffer.close()
     return graph
 
-def get_plot(x, y):
+def get_plot(x, y, hue):
     plt.switch_backend("AGG")
     plt.figure(figsize=(10,5))
     plt.plot(x,y)
-    plt.tight_layout()
     plt.rcParams.update({'font.size': 22})
     graph = get_graph()
     return graph
