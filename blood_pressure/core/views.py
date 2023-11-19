@@ -19,10 +19,13 @@ class Index(View):
         data = BloodPressure.objects.order_by("-timestamp")
         data_len = len(data)
 
-        #plotting
-        x = [x.timestamp for x in data]
-        y = [y.systolic for y in data]
-        chart = get_plot(x, y)
+        #conditional plotting
+        if data_len >= 7:
+            x = [x.timestamp for x in data]
+            y = [y.systolic for y in data]
+            chart = get_plot(x, y)
+        else:
+            chart = False
 
         #pagination
         paginator = Paginator(data, 9)
