@@ -16,6 +16,7 @@ class Index(View):
     def get(self, request):
         form = BloodPressureForm()
         data = BloodPressure.objects.order_by("-timestamp")
+        data_len = len(data)
 
         #pagination
         paginator = Paginator(data, 9)
@@ -28,7 +29,7 @@ class Index(View):
 
         context = {"form": form,
                    "data": page_obj,
-                   "data_len": len(data),
+                   "data_len": data_len,
                    "avg_sys":avg_systolic, 
                    "avg_dia":avg_diastolic, 
                    "avg_hr":avg_hearth_rate}
