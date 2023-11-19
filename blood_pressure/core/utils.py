@@ -13,10 +13,13 @@ def get_graph():
     buffer.close()
     return graph
 
-def get_plot(x, y, hue):
+def get_plot(timestamp, sys, dia, hr):
     plt.switch_backend("AGG")
-    plt.figure(figsize=(10,5))
-    plt.plot(x,y)
-    plt.rcParams.update({'font.size': 22})
+    plt.figure(figsize=(10,4))
+    plt.plot(timestamp, sys, label="górne")
+    plt.plot(timestamp, dia, label="dolne")
+    plt.plot(timestamp, hr, label="puls")
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.15), ncol=3)
+    plt.rcParams.update({'font.size': 18})
     graph = get_graph()
     return graph
