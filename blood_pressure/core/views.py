@@ -29,7 +29,7 @@ class Index(View):
             chart = False
 
         #pagination
-        paginator = Paginator(data, 6)
+        paginator = Paginator(data, 7)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
 
