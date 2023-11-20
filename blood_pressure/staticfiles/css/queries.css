@@ -18,7 +18,7 @@
 
 } */
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 430px) {
 
     html, body {
         font-size: 7px;
@@ -26,6 +26,12 @@
 
     .stats, .date-form{
         width: 50rem;
+        align-items: center;
+    }
+
+    .stats-component{
+        width: 15rem;
+        margin-bottom: 1rem;
     }
 
     .btn{

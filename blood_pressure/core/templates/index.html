@@ -13,28 +13,30 @@
     {% endif %}
 
     <div class="stats">
-        <div class="stats-component">
-            <p>POMIARÓW</p>
-            <p>{{data_len}}</p>
+        <div>
+            <div class="stats-component">
+                <p>POMIARÓW</p>
+                <p>{{data_len}}</p>
+            </div>
+            <div class="stats-component">
+                <p>ŚREDNI PULS</p>
+                <p>{{avg_hr|floatformat:"1"}}</p>
+            </div>
         </div>
-        <div class="stats-component">
-            <p>ŚREDNIE GÓRNE</p>
-            <p>{{avg_sys|floatformat:"1"}}</p>
-        </div>
-        <div class="stats-component">
-            <p>ŚREDNIE DOLNE</p>
-            <p>{{avg_dia|floatformat:"1"}}</p>
-        </div>
-        <div class="stats-component">
-            <p>ŚREDNI PULS</p>
-            <p>{{avg_hr|floatformat:"1"}}</p>
+        <a href="#" class="addBtn">
+            <img src="{% static 'img/add.png' %}" alt="add">
+        </a>
+        <div>
+            <div class="stats-component">
+                <p>ŚREDNIE GÓRNE</p>
+                <p>{{avg_sys|floatformat:"1"}}</p>
+            </div>
+            <div class="stats-component">
+                <p>ŚREDNIE DOLNE</p>
+                <p>{{avg_dia|floatformat:"1"}}</p>
+            </div>
         </div>
     </div>
-
-    
-    <a href="#" class="addBtn">
-        <img src="{% static 'img/add.png' %}" alt="add">
-    </a>
 
     {% if messages %}
     <div class="message">
