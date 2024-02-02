@@ -14,7 +14,6 @@ from .utils import get_plot
 import pandas as pd
 
 class Index(View):
-
     def get(self, request):
         form = BloodPressureForm()
         data = BloodPressure.objects.order_by("-timestamp")
@@ -29,16 +28,16 @@ class Index(View):
             chart = False
 
         #pagination
-        paginator = Paginator(data, 7)
-        page_number = request.GET.get("page")
-        page_obj = paginator.get_page(page_number)
+        # paginator = Paginator(data, 7)
+        # page_number = request.GET.get("page")
+        # page_obj = paginator.get_page(page_number)
 
         avg_systolic = data.aggregate(Avg("systolic"))["systolic__avg"]
         avg_diastolic = data.aggregate(Avg("diastolic"))["diastolic__avg"]
         avg_hearth_rate = data.aggregate(Avg("hearth_rate"))["hearth_rate__avg"]
 
         context = {"form": form,
-                   "data": page_obj,
+                   "data": data,
                    "data_len": data_len,
                    "avg_sys":avg_systolic, 
                    "avg_dia":avg_diastolic, 
