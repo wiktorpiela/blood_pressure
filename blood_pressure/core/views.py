@@ -22,8 +22,7 @@ class Index(View):
         #conditional plotting
         if data_len >= 7:
             df = pd.DataFrame.from_records(data.values("timestamp", "systolic", "diastolic", "hearth_rate"))
-            # df = df.melt(id_vars="timestamp", value_vars=["systolic", "diastolic", "hearth_rate"])
-            chart = get_plot(df["timestamp"], df["systolic"], df["diastolic"], df["hearth_rate"])
+            chart = get_plot(df.index, df["systolic"], df["diastolic"], df["hearth_rate"])
         else:
             chart = False
 

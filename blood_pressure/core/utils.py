@@ -19,6 +19,7 @@ def get_plot(timestamp, sys, dia, hr):
     plt.plot(timestamp, sys, label="górne")
     plt.plot(timestamp, dia, label="dolne")
     plt.plot(timestamp, hr, label="puls")
+    plt.xticks([])
     plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.15), ncol=3)
     plt.rcParams.update({'font.size': 18})
     graph = get_graph()
